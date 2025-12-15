@@ -1,1 +1,211 @@
-/* Put your code here */
+/* style.css - Modern and creative styles to enhance the HTML shopping cart */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    color: #333;
+}
+
+/* Main layout */
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* Products section */
+.products {
+    flex: 1;
+    min-width: 300px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+/* Cart section */
+.cart {
+    width: 380px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 40px;
+    align-self: flex-start;
+    height: fit-content;
+}
+
+/* Headings */
+h1 {
+    text-align: center;
+    font-size: 2.8em;
+    margin-bottom: 40px;
+    color: #2d3748;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+    color: #4a5568;
+}
+
+/* Product item styling */
+.item {
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    transition: all 0.4s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.item:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #4299e1;
+}
+
+/* Item image */
+.item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-right: 25px;
+    border: 3px solid #e2e8f0;
+    transition: border-color 0.3s ease;
+}
+
+.item:hover img {
+    border-color: #4299e1;
+}
+
+/* Item details */
+.item-details {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+}
+
+.item-price {
+    font-size: 1.4em;
+    color: #48bb78;
+    font-weight: bold;
+}
+
+/* Add button */
+button {
+    background: linear-gradient(45deg, #4299e1, #3182ce);
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(66, 153, 225, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(45deg, #3182ce, #2b6cb0);
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 25px rgba(66, 153, 225, 0.4);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Cart items */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px dashed #cbd5e0;
+    font-size: 1.1em;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+/* Total */
+.total {
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px solid #4299e1;
+    color: #2d3748;
+}
+
+/* Footer with external link */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 1.1em;
+    color: #718096;
+}
+
+footer a {
+    color: #4299e1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #3182ce;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .cart {
+        width: 100%;
+        position: static;
+    }
+}
+
+@media (max-width: 576px) {
+    .item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .item img {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    h1 {
+        font-size: 2.2em;
+    }
+}
