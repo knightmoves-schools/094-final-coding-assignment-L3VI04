@@ -1,4 +1,177 @@
 <!DOCTYPE html>
-<html>
-    <!--Put your code here-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Shopping Cart</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Creative gradient background */
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .products {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+        }
+        .cart {
+            width: 350px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #4a5568;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover animation */
+        }
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+        }
+        .item img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 20px;
+            border: 2px solid #e2e8f0;
+        }
+        .item-details {
+            flex: 1;
+        }
+        .item-name {
+            font-size: 1.4em;
+            margin: 0 0 10px 0;
+            color: #2d3748;
+        }
+        .item-price {
+            font-size: 1.2em;
+            color: #48bb78;
+            font-weight: bold;
+        }
+        button {
+            background: #4299e1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease, transform 0.2s; /* Button hover effects */
+        }
+        button:hover {
+            background: #3182ce;
+            transform: scale(1.05);
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .total {
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+            color: #2d3748;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tech Gadget Store</h1>
+    <div class="container">
+        <div class="products">
+            <h2>Available Items</h2>
+            
+            <div class="item" data-name="Wireless Headphones" data-price="99.99">
+                <img src="https://lh3.googleusercontent.com/sitesv/AAzXCkeA1ztdIGLooAtJfAUmhdUod9RJScYBVL7a59n2rP6iiZPTT_wdoOrz7U8cUif2iWVz6xxalAVD9Zy-7Xj3qcT6uuLIEr4pUOTknFK3ZfSgbjkIo3a2wTMqeXXrsjwaBKl5s34OBM1ta7O53lUmz_4ACEe2tLw6GrNW3aOX4nBta3zGr0O5IKhdWl7Qm82m9LdVPxNb8FB7iauXKNVVZqE5Ivtxl8FuO3aiOZE=w1280" alt="Wireless Headphones">
+                <div class="item-details">
+                    <p class="item-name">Wireless Headphones</p>
+                    <p class="item-price">$99.99</p>
+                </div>
+                <button onclick="addToCart(this)">Add</button>
+            </div>
+            
+            <div class="item" data-name="Mechanical Keyboard" data-price="149.99">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSux4MaYZDL2yo0jqh8R4fFYBTMne4a5vocYxJTL4PjOc7JL4dTlFOPjPSQaz_VD4u-8-FWb2-7M5pApck7oI_dbvOpF6gcpAPzbpb_7GhYojzbCHiYF3IEh3R_y7cxTOqVVqW7z6TGC8shgYtfP3D6-oLSZxJDMVh3nVlpAsagq5_XoEQ5aJIsGX5A-QX/w1200-h630-p-k-no-nu/center1.png" alt="Mechanical Keyboard">
+                <div class="item-details">
+                    <p class="item-name">Mechanical Keyboard</p>
+                    <p class="item-price">$149.99</p>
+                </div>
+                <button onclick="addToCart(this)">Add</button>
+            </div>
+            
+            <div class="item" data-name="Gaming Mouse" data-price="79.99">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgSux4MaYZDL2yo0jqh8R4fFYBTMne4a5vocYxJTL4PjOc7JL4dTlFOPjPSQaz_VD4u-8-FWb2-7M5pApck7oI_dbvOpF6gcpAPzbpb_7GhYojzbCHiYF3IEh3R_y7cxTOqVVqW7z6TGC8shgYtfP3D6-oLSZxJDMVh3nVlpAsagq5_XoEQ5aJIsGX5A-QX/w1200-h630-p-k-no-nu/center1.png" alt="Gaming Mouse">
+                <div class="item-details">
+                    <p class="item-name">Gaming Mouse</p>
+                    <p class="item-price">$79.99</p>
+                </div>
+                <button onclick="addToCart(this)">Add</button>
+            </div>
+        </div>
+        
+        <div class="cart">
+            <h2>Shopping Cart</h2>
+            <div id="cart-items"></div>
+            <div class="total">Total: $<span id="total">0.00</span></div>
+        </div>
+    </div>
+    
+    <footer>
+        Visit <a href="https://www.amazon.com" target="_blank">Amazon.com</a> for more great deals!
+    </footer>
+
+    <script>
+        let total = 0;
+
+        function addToCart(button) {
+            const item = button.parentElement;
+            const name = item.getAttribute('data-name');
+            const price = parseFloat(item.getAttribute('data-price'));
+
+            // Add to cart list
+            const cartItems = document.getElementById('cart-items');
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `<span>${name}</span><span>$${price.toFixed(2)}</span>`;
+            cartItems.appendChild(cartItem);
+
+            // Update total
+            total += price;
+            document.getElementById('total').textContent = total.toFixed(2);
+        }
+    </script>
+</body>
 </html>
